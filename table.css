@@ -1,0 +1,50 @@
+table {
+  --border-color: hsl(249, 11%, 35%);
+  
+  border-collapse: collapse;
+}
+
+th, td {
+  width: 75px;
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+}
+
+td:not(:last-of-type) {
+  border-right: 1px solid var(--border-color);
+}
+
+tbody > tr:not(:last-of-type) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.total_cell {
+  background-color: hsl(0, 0%, 16%);
+}
+
+
+.add_btn {
+  border: none;
+
+  width: 24px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: filter 70ms ease;
+}
+
+.add_btn.btn_plus {
+  background-color: var(--bg-color-plus);
+}
+.add_btn.btn_minus {
+  background-color: var(--bg-color-minus);
+}
+
+.add_btn:hover {
+  filter: brightness(1.5);
+}
+.add_btn:active {
+    
+    filter: brightness(2);
+
+}
+

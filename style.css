@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color-plus: #003a00;
+  --bg-color-minus: #530000;
+  
+  color-scheme: dark;
+  font-family: sans-serif;
+}
+
+.plus {
+  background-color: var(--bg-color-plus);
+}
+
+.minus {
+  background-color: var(--bg-color-minus);
+}
