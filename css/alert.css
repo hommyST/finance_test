@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500&family=Roboto&display=swap');
+
+.alert {
+  --animation-duration: 3s;
+  --side-step: 20vw;
+
+	position: fixed;
+	background-color: hsl(39, 92%, 41%);
+	border-radius: 0.4rem;
+	bottom: -15rem;
+	left: var(--side-step);
+	right: var(--side-step);
+	color: hsl(0, 0%, 90%);
+	font-size: 1.4rem;
+	text-align: center;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+.alert[data-visible="true"] {
+  animation: slide-up 0.4s cubic-bezier(.68,-0.55,0,1.3) forwards;
+}
+.alert[data-visible="false"] {
+  animation: slide-down 1s cubic-bezier(.28,-0.43,.25,1) forwards;
+}
+@keyframes slide-up {
+  from {bottom: -15rem;}
+  to {bottom: 1rem;}
+}
+@keyframes slide-down {
+  from {bottom: 1rem;}
+  to {bottom: -15rem;}
+}
+
+.alert p {
+  margin-top: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.timer {
+  display: block;
+  width: 0;
+  height: 0.4rem;
+  background-color: hsl(198, 68%, 43%);
+}
+
+.alert[data-visible="true"] .timer {
+  animation: timercount linear forwards;
+  animation-duration: var(--animation-duration);
+}
+
+@keyframes timercount {
+  from {width: 100%}
+  to {width: 0%;}
+}

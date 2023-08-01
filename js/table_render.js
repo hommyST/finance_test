@@ -38,8 +38,13 @@ function renderData(tableData) {
     if (val != null) {
       cell.contentEditable = 'true'
       cell.addEventListener('input', (ev) => {
+        // TODO сделать проверку регуляркой
         let newVal = parseFloat(ev.target.innerText)
-        if (!newVal) newVal = 0
+        if (!newVal) {
+          let alert = document.querySelector('.alert')
+          alert.dataset.visible = 'true'
+          newVal = 0
+        }
 
         data.tableData[row][data.dict[column]].val = newVal
 
