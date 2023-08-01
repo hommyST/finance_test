@@ -31,7 +31,7 @@ let tableData = [
     monday: { val: 8000, action: 'add' },
     tuesday: {},
     wednesday: {},
-    thursday: {},
+    thursday: { val: 1300, action: 'sub' },
     friday: {},
     saturday: {},
     sunday: {},

@@ -1,23 +1,30 @@
-function renderData(data) {
+import data from './data.js'
+import logick from './logick.js'
+
+
+function renderData(tableData) {
   const tableBody = document.querySelector('tbody')
 
-  data.forEach(row => {
+  tableData.forEach((row, index) => {
     let tr = document.createElement('tr')
 
-    let mn = createCell(row.monday?.val, row.monday?.action)
-    let tu = createCell(row.tuesday?.val, row.tuesday?.action)
-    let wd = createCell(row.wednesday?.val, row.wednesday?.action)
-    let th = createCell(row.thursday?.val, row.thursday?.action)
-    let fr = createCell(row.friday?.val, row.friday?.action)
-    let sa = createCell(row.saturday?.val, row.saturday?.action)
-    let sn = createCell(row.sunday?.val, row.sunday?.action)
+    let mn = createCell(row.monday?.val, row.monday?.action, 0, index)
+    let tu = createCell(row.tuesday?.val, row.tuesday?.action, 1, index)
+    let wd = createCell(row.wednesday?.val, row.wednesday?.action, 2, index)
+    let th = createCell(row.thursday?.val, row.thursday?.action, 3, index)
+    let fr = createCell(row.friday?.val, row.friday?.action, 4, index)
+    let sa = createCell(row.saturday?.val, row.saturday?.action, 5, index)
+    let sn = createCell(row.sunday?.val, row.sunday?.action, 6, index)
 
     tr.append(mn, tu, wd, th, fr, sa, sn)
     tableBody.append(tr)
   })
 
-  function createCell(val, css = '') {
+  function createCell(val, css = '', column, row) {
     let cell = document.createElement('td')
+    cell.dataset.column = column
+    cell.dataset.row = row
+    
     cell.innerText = val || ''
     let classCss = css
 
@@ -28,6 +35,18 @@ function renderData(data) {
 
     cell.className = classCss
 
+    if (val != null) {
+      cell.contentEditable = 'true'
+      cell.addEventListener('input', (ev) => {
+        let newVal = parseFloat(ev.target.innerText)
+        if (!newVal) newVal = 0
+
+        data.tableData[row][data.dict[column]].val = newVal
+
+        logick.calcTotal(data.tableData, data.dict, column)
+      })
+    }
+    
     return cell
   }
 
