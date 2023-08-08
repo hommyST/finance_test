@@ -4,8 +4,9 @@ import saveload from './js/table_saveload.js'
 import render from './js/table_render.js'
 import dom from './js/table_dom.js'
 
+saveload.loadData()
 
-render.renderData(data.tableData)
+render.renderData()
 for (let i = 0; i < 7; i++) logick.calcTotal(data.tableData, data.dict, i)
 
 
@@ -14,6 +15,11 @@ animation.onclick = () => {
   let state = JSON.parse(alert.dataset.visible || false)
 
   alert.dataset.visible = !state
+}
+
+clearData.onclick = () => {
+  localStorage.removeItem('tableData')
+  window.location.reload()
 }
 
 

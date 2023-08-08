@@ -1,10 +1,18 @@
-function saveData(data) {
-  localStorage.setItem('tableData', JSON.stringify(data))
+import data from './data.js'
+import render from './table_render.js'
+
+
+function saveData() {
+  localStorage.setItem('tableData', JSON.stringify(data.tableData))
 }
 
 function loadData() {
-  let raw =  localStorage.getItem('tableData')
-  if (raw) tableData = JSON.parse(raw)
+  let raw = localStorage.getItem('tableData')
+  if (raw) {
+    data.tableData = JSON.parse(raw)
+    render.renderData()
+  }
+
 }
 
 
